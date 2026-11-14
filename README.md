@@ -1,6 +1,6 @@
 # ColorTune
 
-A small root module that lets you adjust your screen's **contrast** and **saturation** live, from a WebUI or a one-line command.
+A small root module that lets you adjust your screen's **contrast**, **saturation**, and **RGB color balance** live, from a WebUI or Termux/CLI
 
 > **Built for one setup:** a **Tecno Pova 4 Pro** rooted with **KernelSU**. It has never been tested on another device or another root manager. See [Requirements](#requirements).
 

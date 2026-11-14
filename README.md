@@ -72,8 +72,9 @@ ColorTune only calls SurfaceFlinger through `service call`, nothing is patched o
 
 - **Saturation** uses transaction `1022` with a single float. `colortune s 130` sends `1.30`.
 - **Contrast** uses transaction `1015`, which sets a 4x4 color matrix. Contrast `C` scales R, G and B by `C` and shifts them by `0.5 x (1 - C)`, so mid-gray stays where it is while darks get darker and lights get lighter. At `C = 1.5` the shift is `-0.25`.
-- Normal contrast (100%) sends `1015 i32 0`, which clears the matrix instead of setting an identity matrix.
-- Both effects stack, and they are independent of each other.
+- **RGB Color Balance** goes through the same matrix. Each channel gets its own gain `g` (0.5 to 1.0), so the diagonal becomes `C x gR`, `C x gG`, `C x gB`. The shift stays the same. Gains never go above 1.0, so RGB Color Balance alone never clips highlights.
+- Normal values (contrast 100% and all gains 100%) send `1015 i32 0`, which clears the matrix instead of setting an identity matrix.
+- Saturation and the color matrix stack, and they are independent of each other.
 
 On boot, `service.sh` waits for `sys.boot_completed`, then applies the saved values twice, once after 10 seconds and again 20 seconds later. Some ROMs reset the color pipeline on first unlock, and the second pass catches that.
 
@@ -81,7 +82,8 @@ Settings live in `/data/adb/colortune/config`, outside the module folder, so upd
 
 ## Known limitations
 
-- **Contrast shares the color matrix slot with other features.** Night Light, color inversion, color correction, and some "eye comfort" modes use the same transaction (`1015`). If one is on, it can overwrite ColorTune's contrast, or the reverse. Turn it off, then re-apply with `colortune a`.
+- **Contrast and RGB Color Balance share the color matrix slot with other features.** Night Light, color inversion, color correction, and some "eye comfort" modes use the same transaction (`1015`). If one is on, it can overwrite ColorTune, or the reverse.
+- **Auto Override wins over those features.** While it is ON, Night Light and similar filters get overwritten within 15 seconds. If you want to use one of them, turn Auto Override OFF in the WebUI. A warm RGB Color Balance (lower blue gain) can replace Night Light.
 - Saturation may also be reset by the ROM's own color settings.
 - Strong values clip. High contrast crushes shadows and blows out highlights. The built-in test chart exists to help you see that happening.
 - This changes how colors are composed, it does not change the physical panel. HDR, wide color gamut, and color mode switching are out of scope, and my panel exposes none of them anyway.

@@ -1,0 +1,67 @@
+#!/system/bin/sh
+# colortune - ColorTune CLI. Adjusts screen contrast, saturation and RGB color balance.
+# Values are percentages, 100 = normal.
+
+CT_MODDIR=${CT_MODDIR:-/data/adb/modules/colortune}
+[ -f "$CT_MODDIR/lib.sh" ] || { echo "ColorTune is not installed yet. Reboot after installing."; exit 1; }
+. "$CT_MODDIR/lib.sh"
+
+load_saved
+
+usage() {
+  echo "ColorTune  contrast=$CONTRAST  saturation=$SATURATION  RGB=$WB_R/$WB_G/$WB_B (saved)"
+  echo "  colortune 120 130        set contrast + saturation"
+  echo "  colortune c 120          contrast only (50-200)"
+  echo "  colortune s 130          saturation only (0-400)"
+  echo "  colortune rgb 100 95 90  RGB color balance, R G B gain (50-100)"
+  echo "  colortune r              reset everything to normal"
+  echo "  colortune a              apply saved settings"
+}
+
+need_int() {
+  is_int "$1" || { echo "Values must be numbers. Run 'colortune' for help."; exit 1; }
+}
+
+commit_matrix() { apply_matrix; save_conf; save_live; }
+commit_sat()    { apply_sat; save_conf; save_live; }
+
+case "$1" in
+  ''|h|help|-h|--help)
+    usage
+    ;;
+  c)
+    need_int "$2"
+    clamp "$2" 50 200; CONTRAST=$CL
+    commit_matrix
+    echo "contrast=$CONTRAST"
+    ;;
+  s)
+    need_int "$2"
+    clamp "$2" 0 400; SATURATION=$CL
+    commit_sat
+    echo "saturation=$SATURATION"
+    ;;
+  rgb)
+    need_int "$2"; need_int "$3"; need_int "$4"
+    clamp "$2" 50 100; WB_R=$CL
+    clamp "$3" 50 100; WB_G=$CL
+    clamp "$4" 50 100; WB_B=$CL
+    commit_matrix
+    echo "RGB color balance R=$WB_R G=$WB_G B=$WB_B"
+    ;;
+  r|reset)
+    CONTRAST=100; SATURATION=100; WB_R=100; WB_G=100; WB_B=100
+    apply_all; save_conf; save_live
+    echo "Reset to normal"
+    ;;
+  a|apply)
+    apply_all; save_live
+    ;;
+  *)
+    need_int "$1"; need_int "$2"
+    clamp "$1" 50 200; CONTRAST=$CL
+    clamp "$2" 0 400;  SATURATION=$CL
+    apply_all; save_conf; save_live
+    echo "contrast=$CONTRAST saturation=$SATURATION"
+    ;;
+esac

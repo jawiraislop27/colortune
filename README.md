@@ -56,10 +56,7 @@ su -c "colortune 120 130"    # contrast 120%, saturation 130%, saved
 | `colortune s 130` | Saturation only |
 | `colortune r` | Reset to normal |
 | `colortune a` | Apply the saved settings |
-| `colortune pc 120` | Preview contrast, not saved |
-| `colortune ps 130` | Preview saturation, not saved |
-| `colortune g` | Print the saved values |
-| `colortune theme dark` | Set the WebUI theme fallback (`dark` or `light`) |
+| `colortune rgb 100 100 100` | set rgb color balance |
 
 If `colortune` is not found in your PATH (this can happen on KernelSU when no metamodule mounts the module's files), call it by its full path. In Termux you can define a function once:
 

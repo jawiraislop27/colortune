@@ -46,7 +46,7 @@ Only tested on **KernelSU** and the **stock Tecno ROM** (Tecno Pova 4 Pro). No o
 ## Using the command line
 
 ```sh
-su -c "colortune 120 130"    # contrast 120%, saturation 130%, saved
+su -c "colortune"
 ```
 
 | Command | What it does |

@@ -23,7 +23,7 @@ This module is fully vibe coded with AI, but the idea is purely human.
 - Auto apply after reboot
 - Test chart built into the WebUI: grayscale steps, shadow and highlight detail, a 24-patch ColorChecker, and primary/secondary colors. Tap a patch to see its name and RGB value, tap it again to unselect.
 - Has dark mode and light mode
-- Config can be changed from Termux, just run `su -c colortune`
+- Config can be changed from Termux/CLI, just run `su -c colortune`
 
 ![Darkmode](https://i.imgur.com/EJOB7Qm.png)
 
@@ -58,7 +58,7 @@ su -c "colortune"
 | `colortune a` | Apply the saved settings |
 | `colortune rgb 100 100 100` | set rgb color balance |
 
-If `colortune` is not found in your PATH (this can happen on KernelSU when no metamodule mounts the module's files), call it by its full path. In Termux you can define a function once:
+If `colortune` is not found in your PATH (this can happen on KernelSU when no metamodule mounts the module's files), call it by its full path. In Termux/CLI you can define a function once:
 
 ```sh
 echo 'colortune(){ su -c "sh /data/adb/modules/colortune/system/bin/colortune $*"; }' >> ~/.bashrc && source ~/.bashrc

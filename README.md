@@ -2,7 +2,6 @@
 
 A small root module that lets you adjust your screen's **contrast**, **saturation**, and **RGB color balance** live, from a WebUI or Termux/CLI
 
-> **Built for one setup:** a **Tecno Pova 4 Pro** rooted with **KernelSU**. It has never been tested on another device or another root manager. See [Requirements](#requirements).
 
 
 ![ColorTune Banner](https://i.imgur.com/Dl6q7Ky.png)
@@ -12,6 +11,8 @@ A small root module that lets you adjust your screen's **contrast**, **saturatio
 My phone originally had a good screen. I replaced it with a cheap screen, and the colors on it are really bad: washed out and flat. The ROM has no setting to fix that, so I wanted to push saturation and contrast up myself.
 
 Because of that, the value ranges and the test chart are built around making a weak screen look better. If you have a good panel, you may not need this much.
+
+> **Tested on** a **Tecno Pova 4 Pro** rooted with **KernelSU**. It has never been tested on another device or another root manager. See [Requirements](#requirements).
 
 ## A note on how this was made
 

@@ -19,7 +19,7 @@ This module is fully vibe coded with AI, but the idea is purely human.
 
 ## Features
 
-- Live contrast and saturation slider
+- Configurable screen contrast, saturation, and rgb color balance
 - Auto apply after reboot
 - Test chart built into the WebUI: grayscale steps, shadow and highlight detail, a 24-patch ColorChecker, and primary/secondary colors. Tap a patch to see its name and RGB value, tap it again to unselect.
 - Has dark mode and light mode

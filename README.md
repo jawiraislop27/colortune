@@ -25,11 +25,11 @@ This module is fully vibe coded with AI, but the idea is purely human.
 - Has dark mode and light mode
 - Config can be changed from Termux/CLI, just run `su -c colortune`
 
-![Darkmode](https://i.imgur.com/EJOB7Qm.png)
+![Darkmode](https://i.imgur.com/qe1tIkU.jpeg)
 
-![Lightmode](https://i.imgur.com/CroDZDQ.png)
+![Lightmode](https://i.imgur.com/k9S2bYB.jpeg)
 
-![TestChart](https://i.imgur.com/YLfWCsm.png)
+![TestChart](https://i.imgur.com/GbbHBEQ.jpeg)
 
 ## Requirements
 

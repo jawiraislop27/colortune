@@ -94,7 +94,7 @@ Settings live in `/data/adb/colortune/config`, outside the module folder, so upd
 - Code and documentation: written with Claude (Anthropic)
 - The 24-patch chart uses commonly published sRGB values for the ColorChecker Classic layout. It is a visual aid, not a calibration instrument, and it is not affiliated with any calibration vendor.
 
-License: MIT License
+**colortune** is free software under the [MIT License](LICENSE).
 
 ## Disclaimer
 
